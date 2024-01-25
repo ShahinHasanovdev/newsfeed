@@ -1,5 +1,10 @@
 from django.shortcuts import render,HttpResponse
-
+from .models import Feed
 # Create your views here.
 def home(request):
-    return HttpResponse("hello world")
+    feeds =Feed.objects.all() #queryset
+    context = {
+        "feeds":feeds
+    }
+    return render(request, "feeds/home.html", context)
+    #return HttpResponse(feeds)
